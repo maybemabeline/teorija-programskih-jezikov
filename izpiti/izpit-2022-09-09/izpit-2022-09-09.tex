@@ -1,0 +1,120 @@
+\documentclass[arhiv]{../izpit}
+\usepackage{amssymb}
+\usepackage{fouriernc}
+\usepackage{mathpartir}
+
+\begin{document}
+
+\newcommand{\bnfis}{\mathrel{{:}{:}{=}}}
+\newcommand{\bnfor}{\;\mid\;}
+\newcommand{\fun}[2]{\lambda #1. #2}
+\newcommand{\conditional}[3]{\mathtt{if}\;#1\;\mathtt{then}\;#2\;\mathtt{else}\;#3}
+\newcommand{\whileloop}[2]{\mathtt{while}\;#1\;\mathtt{do}\;#2}
+\newcommand{\recfun}[3]{\mathtt{rec}\;#1\;#2. #3}
+\newcommand{\funty}[2]{#1 \to #2}
+\newcommand{\tru}{\mathtt{true}}
+\newcommand{\fls}{\mathtt{false}}
+\newcommand{\tbool}{\mathtt{bool}}
+\newcommand{\intsym}[1]{\underline{#1}}
+\newcommand{\kwd}[1]{\mathbf{#1}}
+\newcommand{\kwdpre}[1]{\kwd{#1}\;}
+\newcommand{\kwdmid}[1]{\;\kwd{#1}\;}
+\newcommand{\kwdpost}[1]{\;\kwd{#1}}
+\newcommand{\true}{\kwd{true}}
+\newcommand{\false}{\kwd{false}}
+\newcommand{\cond}[3]{\kwdpre{if} #1 \kwdmid{then} #2 \kwdmid{else} #3}
+\newcommand{\whiledocmd}[2]{\kwdpre{while} #1 \kwdmid{do} #2}
+\newcommand{\skipcmd}{\kwd{skip}}
+\newcommand{\ttt}{\!t}
+\newcommand{\fff}{\!\!f}
+% \newcommand{\infer}[2]{\displaystyle{\frac{#1}{#2}}}
+\newcommand{\boolty}{\kwd{bool}}
+\newcommand{\intty}{\kwd{int}}
+\newcommand{\eqs}{\mathcal{E}}
+\newcommand{\ctxt}{\mathcal{C}}
+\newcommand{\itp}[1]{[\![ #1 ]\!]}
+\newcommand{\return}{\kwdpre{return}}
+\newcommand{\letin}[1]{\kwdpre{let} #1 \kwdmid{in}}
+\newcommand{\bind}{\mathop{>\!\!\!>\!\!\!=}}
+\newcommand{\tand}{\mathbin{\mathtt{or}}}
+\newcommand{\tandalso}{\mathbin{\mathtt{||}}}
+
+\makeatletter
+\newcommand{\nadaljevanje}{\dodatek{\newpage\noindent\emph{(\@sloeng{nadaljevanje rešitve \arabic{naloga}. naloge}{continuation of the answer to question \arabic{naloga}})}}}
+\makeatother
+\izpit
+  [ucilnica=201,naloge=4]{Teorija programskih jezikov: 3. izpit}{9.\ september 2022}{
+}
+\dodatek{
+  \vspace{\stretch{1}}
+  \begin{itemize}
+    \item \textbf{Ne odpirajte} te pole, dokler ne dobite dovoljenja.
+    \item Zgoraj \textbf{vpišite svoje podatke} in označite \textbf{sedež}.
+    \item Na vidno mesto položite \textbf{dokument s sliko}.
+    \item Preverite, da imate \textbf{telefon izklopljen} in spravljen.
+    \item Čas pisanja je \textbf{180 minut}.
+    \item Doseči je možno \textbf{70 točk}.
+    \item Veliko uspeha!
+  \end{itemize}
+  \vspace{\stretch{3}}
+  \newpage
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\naloga[\tocke{15}]
+
+V $\lambda$-računu definirajmo:
+\[
+  M = (\fun{f} f \, f) \, (\fun{m} m + 6 * 7)
+\]
+
+\podnaloga
+Zapišite vse korake v evalvaciji izraza $M$ v \emph{neučakani} semantiki malih korakov.
+
+\podnaloga
+Dokažite, da izraz $M$ nima veljavnega tipa.
+
+\nadaljevanje
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\naloga[\tocke{25}]
+V $\lambda$-račun dodamo operaciji:
+\[
+  M \bnfis \cdots \bnfor
+  M_1 \tand M_2 \bnfor
+  M_1 \tandalso M_2
+\]
+Obe operaciji naj bi izračunali logično disjunkcijo Boolovih izrazov $M_1$ in $M_2$, razlika je le v tem, da $\tand$ evaluira~$M_2$ samo po potrebi, če iz~$M_1$ ni razviden rezultat, medtem ko $\tandalso$ vedno evaluira oba~$M_1$ in~$M_2$.
+
+\podnaloga Zapišite pravila za operacijsko semantiko in določanje tipov za $\tand$ in $\tandalso$.\prostor[2]
+\podnaloga Podajte primer izrazov~$M_1$ in~$M_2$ tipa $\tbool$,
+  iz katerih je opazna razlika med $M_1 \tand M_2$ in $M_1 \tandalso M_2$.\prostor
+\podnaloga Dokažite, da za razširjeni jezik še vedno velja izrek o varnosti.\prostor[2]
+
+\nadaljevanje
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\naloga[\tocke{20}]
+
+Dokažite, da v $\lambda$-računu s preprostimi tipi za vsak sklep $\Gamma, \Gamma' \vdash M : A$, vsak tip $B$ in vsako spremenljivko~$x$, ki se ne pojavlja v $M$, velja tudi sklep $\Gamma, x : B, \Gamma' \vdash M : A$.
+
+\nadaljevanje
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\naloga[\tocke{20}]
+
+Naj bo $\mathcal{D}_f(X)$ množica vseh tistih verjetnostnih porazdelitev na množici $X$, ki imajo končen nosilec.
+
+\podnaloga Podajte ustrezni funkciji $\eta$ in $\bind$, za kateri bo $(\mathcal{D}_f, \eta, \bind)$ monada za interpretacijo učinka naključja. Dokažite, da monada zadošča zahtevanim zakonom.
+
+\podnaloga Pokažite, kako z monado interpretirate razširitev drobnozrnatega $\lambda$-računa z izračunom $M_1 \oplus_p M_2$, ki z verjetnostjo $p$ izvede izračun $M_1$, z verjetnostjo $1 - p$ pa izračun $M_2$.
+
+
+
+\nadaljevanje
+
+\end{document}
