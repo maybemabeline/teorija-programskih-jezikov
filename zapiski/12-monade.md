@@ -28,6 +28,16 @@ ki zadoščajo zakonom:
 
 ## Primeri monad
 
+### Trivialna monada
+
+Najenostavnejša monada je trivialna, ki predstavlja programe, ki ne sprožajo nobenih učinkov.
+
+$$\begin{align*}
+    T X &= X \\
+    \eta_X(x) &= x \\
+    m \bind_{X, Y} k &= k(m)
+\end{align*}$$
+
 ### Izjeme
 
 Monado za izjeme iz množice $\mathbb{E}$ podamo kot:
@@ -64,6 +74,18 @@ $$\begin{align*}
     &= m \bind (x \mapsto k(x) \bind k')
 \end{align*}$$
 
+Za interpretacijo sprožanja in lovljenja izjem potem potrebujemo še preslikavi
+
+$$\begin{align*}
+    \mathrm{raise} &: \mathbb{E} \to T X \\
+    \mathrm{raise}(e) &= \iota_2(e) \\
+    \mathrm{handle} &: T X \times (\mathbb{E} \to T X) \to T X \\
+    \mathrm{handle}(m, h) &= \left(\begin{cases}
+        \iota_1(x) & m = \iota_1(x) \\
+        h(e) & m = \iota_2(e)
+    \end{cases}\right)
+\end{align*}$$
+
 ### Pomnilnik
 
 Monado za delo s pomnilnikom nad množico stanj $S$ podamo kot:
@@ -94,4 +116,13 @@ $$\begin{align*}
         &= (s \mapsto k'(\pi_1(k(\pi_1(m(s)))(\pi_2(m(s)))))(\pi_2(k(\pi_1(m(s)))(\pi_2(m(s)))))) \\
         &= m \bind (x \mapsto (s \mapsto k'(\pi_1(k(x)(s)))(\pi_2(k(x)(s))))) \\
         &= m \bind (x \mapsto k(x) \bind k')
+\end{align*}$$
+
+Za interpretacijo branja in pisanja potrebujemo še preslikavi
+
+$$\begin{align*}
+    \mathrm{lookup} &: L \to T \mathbb{Z} \\
+    \mathrm{lookup}(\ell) & s \mapsto (s(\ell), s) \\
+    \mathrm{update} &: L \times \mathbb{Z} \to 1 \\
+    \mathrm{update}(\ell, n) &= s \mapsto ((), s[\ell \mapsto n])
 \end{align*}$$
