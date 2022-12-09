@@ -1,0 +1,150 @@
+\documentclass[arhiv]{../izpit}
+\usepackage{amssymb}
+\usepackage{fouriernc}
+\usepackage{mathpartir}
+
+\begin{document}
+
+\newcommand{\bnfis}{\mathrel{{:}{:}{=}}}
+\newcommand{\bnfor}{\;\mid\;}
+\newcommand{\fun}[2]{\lambda #1. #2}
+\newcommand{\conditional}[3]{\mathtt{if}\;#1\;\mathtt{then}\;#2\;\mathtt{else}\;#3}
+\newcommand{\whileloop}[2]{\mathtt{while}\;#1\;\mathtt{do}\;#2}
+\newcommand{\recfun}[3]{\mathtt{rec}\;#1\;#2. #3}
+\newcommand{\funty}[2]{#1 \to #2}
+\newcommand{\tru}{\mathtt{true}}
+\newcommand{\fls}{\mathtt{false}}
+\newcommand{\tbool}{\mathtt{bool}}
+\newcommand{\intsym}[1]{\underline{#1}}
+\newcommand{\kwd}[1]{\mathbf{#1}}
+\newcommand{\kwdpre}[1]{\kwd{#1}\;}
+\newcommand{\kwdmid}[1]{\;\kwd{#1}\;}
+\newcommand{\kwdpost}[1]{\;\kwd{#1}}
+\newcommand{\true}{\kwd{true}}
+\newcommand{\false}{\kwd{false}}
+\newcommand{\cond}[3]{\kwdpre{if} #1 \kwdmid{then} #2 \kwdmid{else} #3}
+\newcommand{\whiledocmd}[2]{\kwdpre{while} #1 \kwdmid{do} #2}
+\newcommand{\skipcmd}{\kwd{skip}}
+\newcommand{\ttt}{\!t}
+\newcommand{\fff}{\!\!f}
+% \newcommand{\infer}[2]{\displaystyle{\frac{#1}{#2}}}
+\newcommand{\boolty}{\kwd{bool}}
+\newcommand{\intty}{\kwd{int}}
+\newcommand{\eqs}{\mathcal{E}}
+\newcommand{\ctxt}{\mathcal{C}}
+\newcommand{\itp}[1]{[\![ #1 ]\!]}
+\newcommand{\return}{\kwdpre{return}}
+\newcommand{\letin}[1]{\kwdpre{let} #1 \kwdmid{in}}
+\newcommand{\bind}{\mathop{>\!\!\!>\!\!\!=}}
+
+\makeatletter
+\newcommand{\nadaljevanje}{\dodatek{\newpage\noindent\emph{(\@sloeng{nadaljevanje rešitve \arabic{naloga}. naloge}{continuation of the answer to question \arabic{naloga}})}}}
+\makeatother
+\izpit
+  [ucilnica=201,naloge=4]{Teorija programskih jezikov: 2. izpit}{1.\ julij 2022}{
+}
+\dodatek{
+  \vspace{\stretch{1}}
+  \begin{itemize}
+    \item \textbf{Ne odpirajte} te pole, dokler ne dobite dovoljenja.
+    \item Zgoraj \textbf{vpišite svoje podatke} in označite \textbf{sedež}.
+    \item Na vidno mesto položite \textbf{dokument s sliko}.
+    \item Preverite, da imate \textbf{telefon izklopljen} in spravljen.
+    \item Čas pisanja je \textbf{180 minut}.
+    \item Doseči je možno \textbf{70 točk}.
+    \item Veliko uspeha!
+  \end{itemize}
+  \vspace{\stretch{3}}
+  \newpage
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\naloga[\tocke{15}]
+
+V $\lambda$-računu definirajmo:
+\[
+  S = \fun{n} \fun{f} \fun{x} f (n \, f \, x)
+\]
+
+\podnaloga
+Zapišite vse korake v evalvaciji izraza $S \, \big(\fun{f} \fun{x} f (f x)\big) \, (\fun{x} x + 5) \, 26$ v \emph{leni} semantiki malih korakov.
+
+\podnaloga
+S Hindley-Milnerjevim algoritmom izračunajte najbolj splošen tip izraza $S$.
+
+\nadaljevanje
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\naloga[\tocke{15}]
+
+V $\lambda$-račun dodamo tip $\{ A \}$, ki predstavlja zamrznjene izraze tipa $A$, izraz $\mathtt{freeze} \, M$, ki predstavlja zamrznjen izraz $M$, ter izraz $\mathtt{thaw} \, M$, ki nadaljuje z izvajanjem poprej zamrznjenega izraza $M$.
+
+Zapišite dodatna pravila za določanje tipov ter operacijsko semantiko malih korakov, tako da bo jezik še vedno zadoščal izreku o varnosti. Izreka o varnosti \emph{ni treba dokazovati}.
+
+\nadaljevanje
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\naloga[\tocke{20}]
+
+Vzemimo $\lambda$-račun z običajno \emph{neučakano} semantiko:
+%
+\begin{align*}
+  \text{tip}~A &\bnfis \boolty \mid A \to B \\
+  \text{izraz}~M, N &\bnfis x \mid \true \mid \false \mid \cond{M}{N_1}{N_2} \mid \lambda x. M \mid M \, N \\
+  \text{vrednost}~V &\bnfis \true \mid \false \mid \lambda x. M
+  \intertext{
+Operacijsko semantiko na krajši način lahko podamo tudi prek \emph{evalvacijskih kontekstov}}
+  \text{kontekst}~E &\bnfis [\,] \mid \cond{E}{N_1}{N_2} \mid E \, N \mid V \, E
+\end{align*}
+%
+Definiramo \emph{redukcijo} $M \rightarrowtail N$ s pravili:
+%
+\begin{mathpar}
+  \infer{ }{\cond{\true}{N_1}{N_2} \rightarrowtail N_1} \and
+  \infer{ }{\cond{\false}{N_1}{N_2} \rightarrowtail N_2} \and
+  \infer{ }{(\lambda x. M) \, V \rightarrowtail M[V / x]}
+\end{mathpar}
+%
+semantiko malih korakov $M \hookrightarrow N$ pa s pravilom:
+\[
+  \infer{M \rightarrowtail N}{E[M] \hookrightarrow E[N]}
+\]
+kjer je $E[M]$ izraz, ki ga dobimo, če v kontekstu $E$ luknjo $[\,]$ zamenjamo z izrazom $M$.
+
+Dokažite, da $M \hookrightarrow N$ velja natanko takrat, kadar v običajni operacijski semantiki malih korakov velja $M \leadsto N$.
+
+\nadaljevanje
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\naloga[\tocke{20}]
+
+Vzemimo varianto jezika \textsc{Imp}
+\begin{align*}
+  \text{aritmetični izraz } e &::=
+    \ell \mid
+    \intsym{n} \mid
+    e_1 + e_2 \mid
+    \cdots \\
+  \text{logični izraz } b &::=
+    \true \mid
+    \false \mid
+    e_1 = e_2 \mid
+    \cdots \\
+  \text{ukaz } c &::=
+    \cond{b}{c_1}{c_2} \mid
+    \whiledocmd{b}{c} \mid
+    c_1 ; c_2 \mid
+    \ell := e \mid
+    \skipcmd
+\end{align*}
+kjer predpostavimo, da je množica lokacij $L$ vnaprej določena, pomnilnik pa je na vseh lokacijah vedno definiran. Branje $\ell$ tako vedno uspe, prirejanje $\ell := e$ pa vedno samo povozi obstoječe stanje.
+
+Podajte denotacijsko semantiko naštetih izrazov in ukazov jezika \textsc{Imp}, ki naj bo netrivialna in zdrava, torej usklajena z operacijsko semantiko. Usklajenosti \emph{ni treba dokazovati}.
+
+\nadaljevanje
+
+\end{document}
