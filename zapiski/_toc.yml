@@ -19,5 +19,3 @@ parts:
   chapters:
   - file: 08-racunski-ucinki
   - file: 12-monade
-  - file: 13-algebrajski-ucinki
-  - file: 14-prestrezniki-ucinkov

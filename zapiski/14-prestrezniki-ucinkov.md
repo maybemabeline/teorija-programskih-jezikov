@@ -1,1 +1,0 @@
-# *Prestrezniki algebrajskih učinkov
