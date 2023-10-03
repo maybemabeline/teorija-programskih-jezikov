@@ -10,6 +10,6 @@ let () =
   else
     let filename = Sys.argv.(1) in
     let source = read_source filename in
-    let cmd = Parser.parse source in
-    if Checker.check cmd then Interpreter.run cmd
+    let c = Parser.parse source in
+    if Checker.check c then Interpreter.run c
     else failwith "Not all locations are set!"

@@ -1,5 +1,4 @@
 let explode str = List.init (String.length str) (String.get str)
-
 let implode chrs = String.init (List.length chrs) (List.nth chrs)
 
 type 'value parser = char list -> ('value * char list) option
@@ -7,7 +6,6 @@ type 'value parser = char list -> ('value * char list) option
 (* BASIC PARSERS *)
 
 let fail : 'a parser = fun _chrs -> None
-
 let return v : 'a parser = fun chrs -> Some (v, chrs)
 
 let character : char parser = function
@@ -27,7 +25,6 @@ let ( >>= ) (parser1 : 'a parser) (parser2 : 'a -> 'b parser) : 'b parser =
 (* DERIVED PARSERS *)
 
 let ( >> ) parser1 parser2 = parser1 >>= fun _ -> parser2
-
 let map f parser = parser >>= fun v -> return (f v)
 
 let satisfy cond parser =
@@ -47,7 +44,6 @@ let space =
   character |> satisfy is_space
 
 let exactly chr = character |> satisfy (( = ) chr)
-
 let one_of parsers = List.fold_right ( || ) parsers fail
 
 let word str =
@@ -67,7 +63,6 @@ let ident =
   many (alpha || digit) >>= fun chrs -> return (implode (chr :: chrs))
 
 let spaces = many space >> return ()
-
 let spaces1 = many1 space >> return ()
 
 let parens parser =
@@ -114,11 +109,11 @@ let rec cmd chrs =
   let if_then_else =
     word "if" >> spaces1 >> bexp >>= fun b ->
     spaces1 >> word "then" >> spaces1 >> cmd >>= fun c1 ->
-    spaces1 >> word "else" >> spaces1 >> cmd >>= fun c2 ->
+    spaces1 >> word "else" >> spaces1 >> atomic_cmd >>= fun c2 ->
     return (Syntax.IfThenElse (b, c1, c2))
   and while_do =
     word "while" >> spaces1 >> bexp >>= fun b ->
-    spaces1 >> word "do" >> spaces1 >> cmd >>= fun c ->
+    spaces1 >> word "do" >> spaces1 >> atomic_cmd >>= fun c ->
     return (Syntax.WhileDo (b, c))
   and seq =
     atomic_cmd >>= fun c1 ->

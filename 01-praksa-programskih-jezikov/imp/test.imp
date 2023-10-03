@@ -1,5 +1,0 @@
-#m := 30;
-print #m;
-#a := 0;
-print #a
-

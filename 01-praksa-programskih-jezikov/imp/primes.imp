@@ -1,0 +1,18 @@
+print 2;
+#n := 3;
+while #n < 100 do (
+    #a := 3;
+    #maxprod := #n + 1;
+    (while #a * #a < #maxprod do (
+        #b := #a;
+        (while #a * #b < #maxprod do (
+            if #a * #b = #n then
+                #maxprod := 0
+            else
+                #b := #b + 2
+        ));
+        #a := #a + 2
+    ));
+    (if #maxprod > 1 then print #n else skip);
+    #n := #n + 2
+)

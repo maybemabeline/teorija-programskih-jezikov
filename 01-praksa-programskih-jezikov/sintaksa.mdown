@@ -32,8 +32,8 @@ ukaz _c_ ::= `if` _b_ `then` _c1_ `else` _c2_
             |  <exp> "=" <exp>
             |  <exp> "<" <exp>
             |  <exp> ">" <exp>
-    <cmd> ::= "if" <bexp> "then" <cmd> "else" <cmd>
-           |  "while" <bexp> "do" <cmd>
+    <cmd> ::= "if" <bexp> "then" <cmd> "else" <atomic_cmd>
+           |  "while" <bexp> "do" <atomic_cmd>
            |  <atomic_cmd> ";" <cmd>
     <atomic_cmd> ::= location ":=" <exp>
                   |  "skip"
@@ -56,8 +56,8 @@ ukaz _c_ ::= `if` _b_ `then` _c1_ `else` _c2_
             |  <exp> <spaces> "=" <spaces> <exp>
             |  <exp> <spaces> "<" <spaces> <exp>
             |  <exp> <spaces> ">" <spaces> <exp>
-    <cmd> ::= "if" <spaces1> <bexp> <spaces1> "then" <spaces1> <cmd> <spaces1> "else" <spaces1> <cmd>
-           |  "while" <spaces1> <bexp> <spaces1> "do" <spaces1> <cmd>
+    <cmd> ::= "if" <spaces1> <bexp> <spaces1> "then" <spaces1> <cmd> <spaces1> "else" <spaces1> <atomic_cmd>
+           |  "while" <spaces1> <bexp> <spaces1> "do" <spaces1> <atomic_cmd>
            |  <atomic_cmd> <spaces> ";" <spaces> <cmd>
     <atomic_cmd> ::= location <spaces> ":=" <spaces> <exp>
                   |  "skip"
