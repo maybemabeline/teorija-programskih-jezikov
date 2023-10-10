@@ -1,6 +1,6 @@
 print 2;
 #n := 3;
-while #n < 100 do (
+while true do (
     #a := 3;
     #maxprod := #n + 1;
     (while #a * #a < #maxprod do (
