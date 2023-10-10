@@ -1,7 +1,16 @@
-module VajeNaloge where
+module Vaje where
 
-open import naravna using (ℕ; S; O; _+_)
-open import boole using (𝕥; 𝕗; 𝔹)
+data ℕ : Set where
+    O : ℕ
+    S : ℕ → ℕ
+
+_+_ : ℕ → ℕ → ℕ
+O + n = n
+(S m) + n = S (m + n)
+
+data 𝔹 : Set where
+    𝕥 : 𝔹
+    𝕗 : 𝔹
 
 -- Iz tipov in imena razberite namen funkcije in pripravite ustrezno implementacijo
 -- Naloge rešujte brez uporabe dokazov. 

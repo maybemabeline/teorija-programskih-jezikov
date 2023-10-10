@@ -2,6 +2,8 @@
 
 ## Induktivne množice
 
+Induktivne množice so definirane kot najmanjše množice, ki so zaprte za dane konstrukcije elementov.
+
 ### Naravna števila
 
 Na primer, množico naravnih števil $\mathbb{N}$ lahko definiramo kot **najmanjšo** množico, ki:
