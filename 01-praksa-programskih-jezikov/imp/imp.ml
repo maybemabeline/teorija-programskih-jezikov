@@ -5,11 +5,16 @@ let read_source filename =
   source
 
 let () =
-  if Array.length Sys.argv <> 2 then
-    failwith ("Run IMP as '" ^ Sys.argv.(0) ^ " <filename>.imp'")
-  else
-    let filename = Sys.argv.(1) in
-    let source = read_source filename in
-    let c = Parser.parse source in
-    if Checker.check c then Interpreter.run c
-    else failwith "Not all locations are set!"
+  match Array.to_list Sys.argv with
+  | [ _; filename ] ->
+      let source = read_source filename in
+      let c = Parser.parse source in
+      if Checker.check c then Interpreter.run c
+      else failwith "Not all locations are set!"
+  | [ _; "--ast"; filename ] ->
+      filename |> read_source |> Parser.parse |> Graphviz.output
+      |> print_endline
+  | _ ->
+      failwith
+        ("Run IMP as '" ^ Sys.argv.(0) ^ " <filename>.imp' or '" ^ Sys.argv.(0)
+       ^ " <filename>.imp tag'")
