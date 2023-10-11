@@ -1,4 +1,3 @@
-let tag = "tag"
 let string_of_location (Syntax.Location l) = Printf.sprintf "#%s" l
 
 let exp_label = function
@@ -22,8 +21,11 @@ let cmd_label = function
   | WhileDo _ -> "WHILE"
   | PrintInt _ -> "PRINT"
 
-let node_name ind = Printf.sprintf "%s%d" tag ind
-let node_str name label = Printf.sprintf "%s[label=%S];" name label
+let node_name ind = Printf.sprintf "node%d" ind
+
+let node_str shape name label =
+  Printf.sprintf "%s[label=%S;shape=%s];" name label shape
+
 let connect name child = Printf.sprintf "%s -> %s;" name child
 
 let rec tree_exp ind exp =
@@ -39,7 +41,7 @@ let rec tree_exp ind exp =
         (ind, [ l; r ], la @ ra)
   in
   let all = List.map (connect name) direct @ all in
-  let all = node_str name (exp_label exp) :: all in
+  let all = node_str "oval" name (exp_label exp) :: all in
   (ind, name, all)
 
 let tree_bexp ind bexp =
@@ -54,7 +56,7 @@ let tree_bexp ind bexp =
         (ind, [ l; r ], la @ ra)
   in
   let all = List.map (connect name) direct @ all in
-  let all = node_str name (bexp_label bexp) :: all in
+  let all = node_str "square" name (bexp_label bexp) :: all in
   (ind, name, all)
 
 let rec tree_cmd ind cmd =
@@ -85,10 +87,9 @@ let rec tree_cmd ind cmd =
     | Skip -> (ind, [], [])
   in
   let all = List.map (connect name) direct @ all in
-  let all = node_str name (cmd_label cmd) :: all in
+  let all = node_str "diamond" name (cmd_label cmd) :: all in
   (ind, name, all)
 
-let output cmd =
+let ast_string cmd =
   let _, _, all = tree_cmd 0 cmd in
-  Printf.sprintf "digraph G {\n  subgraph ast_%s {\n    %s\n  }\n}\n" tag
-    (String.concat "\n    " all)
+  Printf.sprintf "digraph G {\n  %s\n}\n" (String.concat "\n  " all)
