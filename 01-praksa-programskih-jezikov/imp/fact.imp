@@ -1,7 +1,7 @@
 #n := 10;
 #fact := 1;
-(while #n > 0 do (
+(WHILE #n > 0 DO (
     #fact := #fact * #n;
     #n := #n - 1
 ));
-print #fact
+PRINT #fact

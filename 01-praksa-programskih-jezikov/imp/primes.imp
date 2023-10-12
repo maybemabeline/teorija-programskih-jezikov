@@ -1,18 +1,18 @@
-print 2;
+PRINT 2;
 #n := 3;
-while true do (
+WHILE TRUE DO (
     #a := 3;
     #maxprod := #n + 1;
-    (while #a * #a < #maxprod do (
+    (WHILE #a * #a < #maxprod DO (
         #b := #a;
-        (while #a * #b < #maxprod do (
-            if #a * #b = #n then
+        (WHILE #a * #b < #maxprod DO (
+            IF #a * #b = #n THEN
                 #maxprod := 0
-            else
+            ELSE
                 #b := #b + 2
         ));
         #a := #a + 2
     ));
-    (if #maxprod > 1 then print #n else skip);
+    (IF #maxprod > 1 THEN PRINT #n ELSE SKIP);
     #n := #n + 2
 )

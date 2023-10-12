@@ -98,8 +98,8 @@ and atomic_exp chrs =
 let bexp =
   one_of
     [
-      word "true" >> return (Syntax.Bool true);
-      word "false" >> return (Syntax.Bool false);
+      word "TRUE" >> return (Syntax.Bool true);
+      word "FALSE" >> return (Syntax.Bool false);
       binop exp "=" (fun e1 e2 -> Syntax.Equal (e1, e2));
       binop exp "<" (fun e1 e2 -> Syntax.Less (e1, e2));
       binop exp ">" (fun e1 e2 -> Syntax.Greater (e1, e2));
@@ -107,13 +107,13 @@ let bexp =
 
 let rec cmd chrs =
   let if_then_else =
-    word "if" >> spaces1 >> bexp >>= fun b ->
-    spaces1 >> word "then" >> spaces1 >> cmd >>= fun c1 ->
-    spaces1 >> word "else" >> spaces1 >> atomic_cmd >>= fun c2 ->
+    word "IF" >> spaces1 >> bexp >>= fun b ->
+    spaces1 >> word "THEN" >> spaces1 >> cmd >>= fun c1 ->
+    spaces1 >> word "ELSE" >> spaces1 >> atomic_cmd >>= fun c2 ->
     return (Syntax.IfThenElse (b, c1, c2))
   and while_do =
-    word "while" >> spaces1 >> bexp >>= fun b ->
-    spaces1 >> word "do" >> spaces1 >> atomic_cmd >>= fun c ->
+    word "WHILE" >> spaces1 >> bexp >>= fun b ->
+    spaces1 >> word "DO" >> spaces1 >> atomic_cmd >>= fun c ->
     return (Syntax.WhileDo (b, c))
   and seq =
     atomic_cmd >>= fun c1 ->
@@ -127,9 +127,9 @@ and atomic_cmd chrs =
     location >>= fun l ->
     spaces >> word ":=" >> spaces >> exp >>= fun e ->
     return (Syntax.Assign (l, e))
-  and skip = word "skip" >> return Syntax.Skip
+  and skip = word "SKIP" >> return Syntax.Skip
   and print_int =
-    word "print" >> spaces1 >> exp >>= fun e -> return (Syntax.PrintInt e)
+    word "PRINT" >> spaces1 >> exp >>= fun e -> return (Syntax.PrintInt e)
   in
   one_of [ assign; skip; print_int; parens cmd ] chrs
 

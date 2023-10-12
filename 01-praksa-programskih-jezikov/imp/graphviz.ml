@@ -8,7 +8,7 @@ let exp_label = function
   | Times _ -> "*"
 
 let bexp_label = function
-  | Syntax.Bool b -> string_of_bool b
+  | Syntax.Bool b -> String.uppercase_ascii (string_of_bool b)
   | Equal _ -> "="
   | Less _ -> "<"
   | Greater _ -> ">"
