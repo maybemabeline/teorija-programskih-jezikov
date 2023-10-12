@@ -720,3 +720,62 @@ let run str =
 ```{code-cell}
 run "#n := 10; #fact := 1; WHILE #n > 0 DO ( #fact := #fact * #n; #n := #n - 1 )"
 ```
+
+## Vaje
+
+### Naloga 1
+
+Napišite sintaktično drevo, ki ustreza programom:
+
+```
+#a := 2 + #b
+```
+
+```
+IF #x = 2 THEN 
+  #x := 3
+ELSE
+  SKIP
+```
+
+```
+WHILE #z > 0 DO 
+  #z := #z - 1;
+  #w := #z + #w
+```
+
+```
+(WHILE #z > 0 DO #z := #z - 1);
+#w := #z + #w
+```
+
+### Naloga 2
+
+Programe najprej napišite v OCamlu, nato pa jih prevedite v programski jezik IMP s predavanj.
+
+1. Napišite program, ki sešteje vsa naravna števila manjša od `n`.
+
+2. Napišite program, ki preveri ali je podano število praštevilo.
+
+### Naloga 3
+
+Razmislite, kako bi dopolnili sintakso in evaluator jezika IMP za:
+
+1. logična veznika `&&` in `||`,
+
+2. ukaz `SWITCH`, ki zamenja vrednosti dveh lokacij,
+
+3. ukaz `FAIL`, ki prekine izvajanje programa.
+
+### Naloga 4
+
+Izboljšajte razčlenjevalnik, da bo dopolnil nepopolne pogojne stavke. Ukaz `IF b THEN c` naj se prevede v enako sintaktično drevo kot `IF b THEN c ELSE SKIP`.
+
+### Naloga 5
+
+Dopolnite vse dele IMPa s podporo za zanke `FOR` oblike:
+```
+FOR #x := 0 TO 100 DO
+  cmd
+```
+Pri tem sta `0` in `100` seveda zgolj zgled poljubnih aritmetičnih izrazov.
