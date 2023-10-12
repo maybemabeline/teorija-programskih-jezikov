@@ -66,8 +66,8 @@ Za programski jezik IMP bo konkretna sintaksa
     <atomic_exp> ::= <location>
                   |  <integer>
                   |  "(" <spaces> <exp> <spaces> ")"
-    <bexp> ::= "true"
-            |  "false"
+    <bexp> ::= "TRUE"
+            |  "FALSE"
             |  <exp> <spaces> "=" <spaces> <exp>
             |  <exp> <spaces> "<" <spaces> <exp>
             |  <exp> <spaces> ">" <spaces> <exp>
@@ -536,11 +536,11 @@ let word str =
 ```
 
 ```{code-cell}
-word "while" $$$ "while true do skip"
+word "WHILE" $$$ "WHILE TRUE DO SKIP"
 ```
 
 ```{code-cell}
-word "while" $$$ "if true then skip else skip"
+word "WHILE" $$$ "IF TRUE THEN SKIP ELSE SKIP"
 ```
 
 Podobno lahko s pomočjo `fold_right` zaporedoma z `||` poskusimo vse razčlenjevalnike iz danega seznama:
@@ -550,15 +550,15 @@ let one_of parsers = List.fold_right ( || ) parsers fail
 ```
 
 ```{code-cell}
-one_of [word "while"; word "if"] $$$ "while true do skip"
+one_of [word "WHILE"; word "IF"] $$$ "WHILE TRUE DO SKIP"
 ```
 
 ```{code-cell}
-one_of [word "while"; word "if"] $$$ "if true then skip else skip"
+one_of [word "WHILE"; word "IF"] $$$ "IF TRUE THEN SKIP ELSE SKIP"
 ```
 
 ```{code-cell}
-one_of [word "while"; word "if"] $$$ "skip"
+one_of [word "WHILE"; word "IF"] $$$ "SKIP"
 ```
 
 Rekurzivno si lahko definiramo tudi razčlenjevalnika `many` in `many1`, ki dani razčlenjevalnik uporabita poljubno mnogokrat oziroma vsaj enkrat, vrneta pa seznam uspešno prebranih vrednosti:
@@ -662,8 +662,8 @@ Podobno definiramo razčlenjevalnik za Booleove izraze:
 let bexp =
   one_of
     [
-      word "true" >> return (Bool true);
-      word "false" >> return (Bool false);
+      word "TRUE" >> return (Bool true);
+      word "FALSE" >> return (Bool false);
       binop exp "=" (fun e1 e2 -> Equal (e1, e2));
       binop exp "<" (fun e1 e2 -> Less (e1, e2));
       binop exp ">" (fun e1 e2 -> Greater (e1, e2));
@@ -679,13 +679,13 @@ Podobno definiramo tudi razčlenjevalnik za ukaze:
 ```{code-cell}
 let rec cmd chrs =
   let if_then_else =
-    word "if" >> spaces1 >> bexp >>= fun b ->
-    spaces1 >> word "then" >> spaces1 >> cmd >>= fun c1 ->
-    spaces1 >> word "else" >> spaces1 >> atomic_cmd >>= fun c2 ->
+    word "IF" >> spaces1 >> bexp >>= fun b ->
+    spaces1 >> word "THEN" >> spaces1 >> cmd >>= fun c1 ->
+    spaces1 >> word "ELSE" >> spaces1 >> atomic_cmd >>= fun c2 ->
     return (IfThenElse (b, c1, c2))
   and while_do =
-    word "while" >> spaces1 >> bexp >>= fun b ->
-    spaces1 >> word "do" >> spaces1 >> atomic_cmd >>= fun c ->
+    word "WHILE" >> spaces1 >> bexp >>= fun b ->
+    spaces1 >> word "DO" >> spaces1 >> atomic_cmd >>= fun c ->
     return (WhileDo (b, c))
   and seq =
     atomic_cmd >>= fun c1 ->
@@ -699,13 +699,13 @@ and atomic_cmd chrs =
     location >>= fun l ->
     spaces >> word ":=" >> spaces >> exp >>= fun e ->
     return (Assign (l, e))
-  and skip = word "skip" >> return Skip
+  and skip = word "SKIP" >> return Skip
   in
   one_of [ assign; skip; parens cmd ] chrs
 ```
 
 ```{code-cell}
-cmd $$$ "if 3 < 4 then skip else skip"
+cmd $$$ "IF 3 < 4 THEN SKIP ELSE SKIP"
 ```
 
 Vsaka IMP datoteka je sestavljena iz enega samega ukaza (ki je seveda lahko sestavljen iz več ukazov, ločenih s podpičjem). Da preberemo celotno datoteko, torej le pokličemo razčlenjevalnik `cmd`. Če nam ni ostalo nič neprebranih znakov, poženemo `eval_cmd` na praznem seznamu, sicer pa program zavrnemo:
@@ -718,5 +718,5 @@ let run str =
 ```
 
 ```{code-cell}
-run "#n := 10; #fact := 1; while #n > 0 do ( #fact := #fact * #n; #n := #n - 1 )"
+run "#n := 10; #fact := 1; WHILE #n > 0 DO ( #fact := #fact * #n; #n := #n - 1 )"
 ```
