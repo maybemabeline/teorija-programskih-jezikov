@@ -14,10 +14,11 @@ let check_and_run c =
 
 let () =
   match Array.to_list Sys.argv with
-  | [ _; filename ] -> filename |> parse_source |> check_and_run
-  | [ _; "--ast"; filename ] ->
+  | [ _imp; filename ] -> filename |> parse_source |> check_and_run
+  | [ _imp; "--ast"; filename ] ->
       filename |> parse_source |> Graphviz.ast_string |> print_endline
   | _ ->
+      let imp = Sys.executable_name in
       failwith
-        ("Run IMP as '" ^ Sys.argv.(0) ^ " <filename>.imp' or '" ^ Sys.argv.(0)
-       ^ " --ast <filename>.imp'")
+        (Printf.sprintf
+           "Run IMP as '%s <filename>.imp' or '%s --ast <filename>.imp'" imp imp)
