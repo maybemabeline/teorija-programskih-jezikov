@@ -1,5 +1,4 @@
 let explode str = List.init (String.length str) (String.get str)
-
 let implode chrs = String.init (List.length chrs) (List.nth chrs)
 
 type 'value parser = char list -> ('value * char list) option
@@ -7,9 +6,7 @@ type 'value parser = char list -> ('value * char list) option
 (* BASIC PARSERS *)
 
 let fail _ = None
-
 let return v chrs = Some (v, chrs)
-
 let character = function [] -> None | chr :: chrs -> Some (chr, chrs)
 
 let ( || ) parser1 parser2 chrs =
@@ -41,7 +38,6 @@ let space =
   character |> satisfy is_space
 
 let exactly chr = character |> satisfy (( = ) chr)
-
 let one_of parsers = List.fold_right ( || ) parsers fail
 
 let word str =
@@ -58,7 +54,6 @@ let integer =
   many1 digit >>= fun digits -> return (int_of_string (implode digits))
 
 let spaces = many space >> return ()
-
 let spaces1 = many1 space >> return ()
 
 let parens parser =

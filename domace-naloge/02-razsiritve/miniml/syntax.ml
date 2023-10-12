@@ -27,7 +27,6 @@ let rec subst_ty sbst = function
   | _ -> failwith "TODO"
 
 let fresh_ty () = ParamTy (fresh_param ())
-
 let string_of_param (Param p) = "'a" ^ string_of_int p
 
 let rec string_of_ty = function
@@ -62,7 +61,6 @@ type exp =
   | Match of exp * exp * ident * ident * exp
 
 let let_in (x, e1, e2) = Apply (Lambda (x, e2), e1)
-
 let let_rec_in (f, x, e1, e2) = let_in (f, RecLambda (f, x, e1), e2)
 
 let rec subst_exp sbst = function

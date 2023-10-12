@@ -2,9 +2,7 @@
 (* 'a * 'b -> 'b * 'a *)
 let konjunkcija_komutira (dokaz_a, dokaz_b) = (dokaz_b, dokaz_a)
 
-type ('a, 'b) sum =
-  | Left of 'a
-  | Right of 'b
+type ('a, 'b) sum = Left of 'a | Right of 'b
 
 (* A /\ (B \/ C) => (A /\ B) \/ (A /\ C) *)
 (* 'a * ('b, 'c) sum -> (('a * 'b), ('a * 'c)) sum *)
@@ -20,14 +18,13 @@ type empty
 
 type 'a not = 'a -> empty
 
-let negacija_konjunkcije (a_ni_res_ali_b_ni_res : ('a not, 'b not) sum) : ('a * 'b) not =
+let negacija_konjunkcije (a_ni_res_ali_b_ni_res : ('a not, 'b not) sum) :
+    ('a * 'b) not =
   match a_ni_res_ali_b_ni_res with
   | Left a_ni_res -> fun (x, y) -> a_ni_res x
   | Right b_ni_res -> fun (x, y) -> b_ni_res y
 
-let hd = function
-  | x :: _ -> Some x
-  | [] -> None
+let hd = function x :: _ -> Some x | [] -> None
 
 let x : 'a =
   let rec f m = f m in
