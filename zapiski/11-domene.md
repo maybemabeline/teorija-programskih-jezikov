@@ -191,7 +191,6 @@ Preverite, ali so sledeče konstrukcije domene ($\leq$ je standardna ureditev na
 3. $([0,1) \cup (2,3], \leq)$
 4. $([0,1) \cup [2,3], \leq)$
 
-
 ### Naloga 2
 
 Naj bo $\leq$ standardna ureditev na $\mathbb{N}$. Definirajte relacijo $\lessdot$ na množici $\mathbb{N} \to \mathbb{N}$ kot
@@ -199,7 +198,6 @@ Naj bo $\leq$ standardna ureditev na $\mathbb{N}$. Definirajte relacijo $\lessdo
 $$f \lessdot g  \iff \forall n \in \mathbb{N}. f(n) \leq g(n).$$
 
 Je $(\mathbb{N} \to \mathbb{N}, \lessdot)$ delno urejena množica? Je domena?
-
 
 ### Naloga 3
 
@@ -217,20 +215,20 @@ Premislite, kako bi za podani domeni $(D_1, \leq_1)$ in $(D_1, \leq_2)$ skonstru
 
 Operator $+_{\bot}$ definiramo kot:
 
-$$ x +_{\bot} y = \begin{cases} 
+$$ x +_{\bot} y = \begin{cases}
   \bot & x = \bot \vee  y=\bot \\
   x + y & \text{sicer}
 \end{cases}$$
 
 Izračunajte najmanjši fiksni točki funkcij $F, G: [\mathbb{N}_\bot \to \mathbb{N}_\bot] \to [\mathbb{N}_\bot \to \mathbb{N}_\bot]$
 
-$$ F(f)(n) = \begin{cases} 
+$$ F(f)(n) = \begin{cases}
   \bot & n = \bot \\
   0 & n = 0 \\
   (2n-1) +_\bot f(n) & n > 0
 \end{cases} $$
 
-$$ G(f)(n) = \begin{cases} 
+$$ G(f)(n) = \begin{cases}
   \bot & n = \bot \\
   0 & n = 0 \\
   (2n-1) +_\bot f(n-1) & n > 0
@@ -240,7 +238,7 @@ $$ G(f)(n) = \begin{cases}
 
 Naj bo $\mathbb{T} = \{tt, ff\}$ in $F : [\mathbb{N}_\bot \to \mathbb{T}_\bot] \to [\mathbb{N}_\bot \to \mathbb{T}_\bot]$,
 
-$$ F(f)(n) = \begin{cases} 
+$$ F(f)(n) = \begin{cases}
   \bot & n = \bot \\
   f(n+2) & n = 0 \\
   tt & n = 1 \\
@@ -251,7 +249,7 @@ Izračunajte najmanjšo fiksno točko $F$.
 
 ### Naloga 7
 
-Naj bo $D$ domena. Predpostavite, da za zaporedje $(x_{i,j})_{i,j\geq0}$ velja $x_{i,j} \leq x_{i', j'}$ kadar $i \leq i'$ in $j \leq j'$. 
+Naj bo $D$ domena. Predpostavite, da za zaporedje $(x_{i,j})_{i,j\geq0}$ velja $x_{i,j} \leq x_{i', j'}$ kadar $i \leq i'$ in $j \leq j'$.
 
 Pokažite, da velja
 $$ \bigvee_i (\bigvee_j x_{i,j}) = \bigvee_i x_{i,i} $$

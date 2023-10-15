@@ -305,7 +305,7 @@ Lambda račun razširite z učinkoma za branje in pisanje (IO). Pri tem se osred
 
 Da lahko beležimo v katerem koraku program nekaj prebere oz. izpiše, naj nova operacijska semantika uporablja označene puščice.
 
-- Če se v koraku ni zgodilo nič, potem uporabimo navadno puščico.   
+- Če se v koraku ni zgodilo nič, potem uporabimo navadno puščico.
 - Če smo v koraku izpisali število `n`, potem puščico označimo z `!n`.
 - Če smo v koraku prebrali število `n`, potem puščico označimo z `?n`.
 

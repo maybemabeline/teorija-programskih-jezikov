@@ -438,7 +438,7 @@ Spremenljivko $x$ kot prej zamenjamo z argumentom $V$, spremenljivko $f$ pa z re
 
 S semantiko malih korakov izračunajte zaporedje korakov, ki izračunajo vrednost izrazov:
 
-1. `(2 * 2) + (3 * 3)` 
+1. `(2 * 2) + (3 * 3)`
 2. `(fun x -> if x + 1 > 0 then x else 0) 12`
 3. `(rec f x. if x = 0 then 1 else x * f (x - 1)) 3``
 

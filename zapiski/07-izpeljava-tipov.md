@@ -154,7 +154,6 @@ $$
 }
 $$
 
-
 Pri tem upoštevamo, da morajo biti vsi parametri $\alpha$ sveži, torej da jih poprej še nismo uporabili. Drevo izpeljave za izraz $\lambda f. \lambda x. f \, (f \, x)$ od prej je natančneje torej:
 
 $$
@@ -364,7 +363,7 @@ Vzemimo zdaj enačbe $\eqs$ in nadaljujmo z leksikogafsko indukcijo na $(|fv(\eq
 
 Če je $\eqs = \emptyset$, velja $\eqs \searrow \emptyset$. V nasprotnem primeru imamo $\eqs = (A_1 = A_2, \eqs')$, kjer velja $\sigma \models \eqs'$ in $\sigma(A_1) = \sigma(A_2)$. Poglejmo, v kakšnih primerih se slednje lahko zgodi.
 
-Če je $A_1 = A_2$, lahko uporabimo pravilo 
+Če je $A_1 = A_2$, lahko uporabimo pravilo
 
 $$
 \infer{
@@ -387,7 +386,6 @@ $$\infer{
 $$
 
 V drugem primeru pa najprej poglejmo možnost, da je parameter na levi strani, torej $A_1 = \alpha$. Naj bo $\eqs'' = \eqs[A_2 / \alpha]$. Tedaj je $|fv(\eqs'')| < |fv(\eqs)|$, saj smo se $\alpha$ znebili, novih parametrov pa nismo dodajali, saj je $fv(A_2) \subseteq fv(\eqs)$. Če velja $\sigma \models \eqs$, potem velja tudi $\sigma \models \eqs[A_2 / \alpha]$, saj smo s substitucijo kvečjemu izenačili več tipov. Torej po indukciji obstaja rešitev $\eqs[A_2 / \alpha] \searrow \sigma'$. Hkrati mora veljati $\alpha \notin fv(A_2)$, saj sicer ne more veljati $\sigma(\alpha) = \sigma(A_2)$, ker bo desna stran striktno večja od leve. Tako so izpolnjene vse predpostavke, da uporabimo drugo pravilo:
-
 
 $$
 \infer{

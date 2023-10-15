@@ -4,7 +4,7 @@
 
 ### Naloga 1
 
-1. Napišite prestreznik `mute`, ki prestreže vgrajeni `Print` in prepreči izpis. Program naj nadaljuje nemoteno. 
+1. Napišite prestreznik `mute`, ki prestreže vgrajeni `Print` in prepreči izpis. Program naj nadaljuje nemoteno.
 
 2. Napišite prestreznik `shift_text_right n`, ki vse izpisano besedilo zamakne v desno za `n` mest.
 
@@ -21,14 +21,14 @@
 2. Da si poenostavimo življenje, se osredotočimo zgolj na funkcije `int -> int`. V nadaljevanju uporabljamo preimenovanji `type arg = int` in `type result = int`.
   Naša memoizacija bo potrebovala pomnilnik, zato bomo zanj definirali poseben prestreznik. Definirajte učinka `Lookup : arg -> result option` in `Remember : arg * result -> unit`. Nato zanju napišite prestreznik `memory`, ki upravlja s pomnilnikom tipa `(arg * result) list`.
 
-3. Sedaj lahko funkcije že uporabljajo pomnilnik za memoizacijo, vendar bi želeli, da je memoizacija funkcije zgolj eno od možnih izvajanj. Zato definirajte učinek `Evaluate : ((int -> int) * int) -> int`, ki sprejme funkcijo in argument, ter nam vrne rezultat. 
+3. Sedaj lahko funkcije že uporabljajo pomnilnik za memoizacijo, vendar bi želeli, da je memoizacija funkcije zgolj eno od možnih izvajanj. Zato definirajte učinek `Evaluate : ((int -> int) * int) -> int`, ki sprejme funkcijo in argument, ter nam vrne rezultat.
   Funkcij sedaj ne kličemo več kot `f x` temveč kot `perform (Evaluate (f, x))` (priporočam, da si ustvarite pomožno funkcijo `eval f x = ...` za lepšo sintakso). Napišite prestreznik `no_memo`, ki funkcijo izvede, kot bi se izvedla sicer. Nato napišite še prestreznik `memo`, ki funkcijo memoizira.
 
 **Namig:** Če želite rekurzivne prestreznike, jih definirajte kot `let rec h () = handler ...` kjer jih lahko sedaj v telesu definicije uporabite z `with h () handle ...`.
 
 ### Naloga 3
 
-Generatorji so funkcije, ki zaporedoma uporabljajo učinek `Yield : int -> unit`. 
+Generatorji so funkcije, ki zaporedoma uporabljajo učinek `Yield : int -> unit`.
 
 1. Napišite funkcijo, ki generira vsa naravna števila.
 

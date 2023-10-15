@@ -27,11 +27,13 @@ Da lahko začnemo raziskovati lastnosti programskih jezikov, potrebujemo primer 
 
 Prva stvar, ki jo moramo podati v definiciji programskega jezika, je njegova sintaksa - torej zapis vseh izrazov, ki jih jezik omogoča. Ločujemo med _konkretno sintakso_, ki definira zaporedja znakov, ki predstavljajo veljavne programe, ter _abstraktno sintakso_, ki možne izraze jezika predstavi z drevesno strukturo. Na primer, `1 + (2 * 3)` in `1+2*3` sta različna niza konkretne sintakse, ki oba predstavljata izraz abstraktne sintakse, predstavljen z drevesom
 
+```text
       +
      / \
     1   *
        / \
       2   3
+```
 
 ki ga na krajše pišemo kar kot $1 + (2 * 3)$, pri čemer matematična pisava nakazuje, da nas podrobnosti, kot so presledki, ne zanimajo.
 
@@ -39,52 +41,59 @@ ki ga na krajše pišemo kar kot $1 + (2 * 3)$, pri čemer matematična pisava n
 
 Konkretno sintakso običajno podajamo v [Backus-Naurovi obliki (BNF)](https://en.m.wikipedia.org/wiki/Backus–Naur_form). Ker mora konkretno sintakso razumeti tudi računalnik, v njej upoštevamo tudi presledke, zamike, oklepaje, komentarje, …  Ta je sestavljena iz pravil, ki povedo, kakšne vrste simbolov lahko nastopajo v jeziku. Pravilo, ki podaja sintakso določenega simbola je oblike
 
-    <simbol> ::= moznost1 | moznost2 | ...
+```text
+<simbol> ::= moznost1 | moznost2 | ...
 
 kjer je vsaka izmed možnosti sestavljena iz enega ali več nizov ali drugih simbolov. Na primer, simbol za števko `<digit>` je lahko kateri koli izmed nizov `"0"`, `"1"`, …, `"9"`, številka pa je sestavljena iz ene ali več števk ter morebitnega predznaka:
 
-    <digit> ::= "0" | "1" | ... | "9"
-    <digits> ::= "" | <digit> <digits>
-    <integer> ::= <digits> | "-" <digits>
+```text
+<digit> ::= "0" | "1" | ... | "9"
+<digits> ::= "" | <digit> <digits>
+<integer> ::= <digits> | "-" <digits>
+```
 
 Za programski jezik IMP bo konkretna sintaksa
 
-    <space> ::= " " | "\n" | "\t" | "\r"
-    <spaces> ::= "" | <spaces1>
-    <spaces1> ::= <space> <spaces>
+```text
+<space> ::= " " | "\n" | "\t" | "\r"
+<spaces> ::= "" | <spaces1>
+<spaces1> ::= <space> <spaces>
 
-    <alpha> ::= "a" | "b" | ... | "z"
-    <alphanum> ::= <alpha> | <digit>
-    <alphanums> ::= "" | <alphanum> <alphanums>
-    <ident> ::= <alpha> <alhpanums>
-    <location> ::= "#" <ident>
+<alpha> ::= "a" | "b" | ... | "z"
+<alphanum> ::= <alpha> | <digit>
+<alphanums> ::= "" | <alphanum> <alphanums>
+<ident> ::= <alpha> <alhpanums>
+<location> ::= "#" <ident>
 
-    <exp> ::= <atomic_exp> <spaces> "+" <spaces> <atomic_exp>
-           |  <atomic_exp> <spaces> "-" <spaces> <atomic_exp>
-           |  <atomic_exp> <spaces> "*" <spaces> <atomic_exp>
-           |  <atomic_exp>
-    <atomic_exp> ::= <location>
-                  |  <integer>
-                  |  "(" <spaces> <exp> <spaces> ")"
-    <bexp> ::= "TRUE"
-            |  "FALSE"
-            |  <exp> <spaces> "=" <spaces> <exp>
-            |  <exp> <spaces> "<" <spaces> <exp>
-            |  <exp> <spaces> ">" <spaces> <exp>
-    <cmd> ::= "IF" <spaces1> <bexp> <spaces1> "THEN" <spaces1> <cmd> <spaces1> "ELSE" <spaces1> <cmd>
-           |  "WHILE" <spaces1> <bexp> <spaces1> "DO" <spaces1> <cmd>
-           |  <atomic_cmd> <spaces> ";" <spaces> <cmd>
-    <atomic_cmd> ::= <location> <spaces> ":=" <spaces> <exp>
-                  |  "SKIP"
-                  |  "(" <spaces> <cmd> <spaces> ")"
+<exp> ::= <atomic_exp> <spaces> "+" <spaces> <atomic_exp>
+        |  <atomic_exp> <spaces> "-" <spaces> <atomic_exp>
+        |  <atomic_exp> <spaces> "*" <spaces> <atomic_exp>
+        |  <atomic_exp>
+<atomic_exp> ::= <location>
+              |  <integer>
+              |  "(" <spaces> <exp> <spaces> ")"
+<bexp> ::= "TRUE"
+        |  "FALSE"
+        |  <exp> <spaces> "=" <spaces> <exp>
+        |  <exp> <spaces> "<" <spaces> <exp>
+        |  <exp> <spaces> ">" <spaces> <exp>
+<cmd> ::= "IF" <spaces1> <bexp> <spaces1> "THEN" <spaces1> <cmd> <spaces1> "ELSE" <spaces1> <cmd>
+        |  "WHILE" <spaces1> <bexp> <spaces1> "DO" <spaces1> <cmd>
+        |  <atomic_cmd> <spaces> ";" <spaces> <cmd>
+<atomic_cmd> ::= <location> <spaces> ":=" <spaces> <exp>
+              |  "SKIP"
+              |  "(" <spaces> <cmd> <spaces> ")"
+```
 
 Kaj predstavljajo zgoraj omenjeni simboli, si bomo ogledali pri abstraktni sintaksi jezika IMP, za idejo pa lahko vseeno podamo primer veljavnega programa v konkretni sintaksi:
 
-    #fact := 1;
-    WHILE #m > 0 DO (
-        #fact := #fact * #m;
-        #m := #m - 1
-    )
+```text
+#fact := 1;
+WHILE #m > 0 DO (
+    #fact := #fact * #m;
+    #m := #m - 1
+)
+```
 
 Videti je, da program v pomnilniško lokacijo `#fact` shrani fakulteto števila, shranjenega v `#m`, vendar tega ne vemo, dokler ne podamo semantike jezika.
 
@@ -727,24 +736,24 @@ run "#n := 10; #fact := 1; WHILE #n > 0 DO ( #fact := #fact * #n; #n := #n - 1 )
 
 Napišite sintaktično drevo, ki ustreza programom:
 
-```
+```text
 #a := 2 + #b
 ```
 
-```
+```text
 IF #x = 2 THEN 
   #x := 3
 ELSE
   SKIP
 ```
 
-```
+```text
 WHILE #z > 0 DO 
   #z := #z - 1;
   #w := #z + #w
 ```
 
-```
+```text
 (WHILE #z > 0 DO #z := #z - 1);
 #w := #z + #w
 ```
@@ -774,8 +783,10 @@ Izboljšajte razčlenjevalnik, da bo dopolnil nepopolne pogojne stavke. Ukaz `IF
 ### Naloga 5
 
 Dopolnite vse dele IMPa s podporo za zanke `FOR` oblike:
-```
+
+```text
 FOR #x := 0 TO 100 DO
   cmd
 ```
+
 Pri tem sta `0` in `100` seveda zgolj zgled poljubnih aritmetičnih izrazov.

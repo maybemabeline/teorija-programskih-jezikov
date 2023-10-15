@@ -230,7 +230,7 @@ Na tej točki se izvajanje ustavi, saj smo dobili funkcijo. Če jo uporabimo na 
 $$
   \begin{align*}
     (Y \, \Psi) \, m
-      &\leadsto^* 
+      &\leadsto^*
       (\lambda y. \Psi \, (Y \, \Psi) \, y) \, m \\
       &\leadsto \Psi \, (Y \, \Psi) \, m \\
       &= (\lambda f. \lambda n. ifThenElse (isZero \, n) \, \underline{1} \, (times \, n \, (f \, (pred \, n)))) \, (Y \, \Psi) \, m \\
