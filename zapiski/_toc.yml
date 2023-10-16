@@ -4,19 +4,41 @@ parts:
 - caption: Osnove
   chapters:
   - file: 01-praksa-programskih-jezikov.md
+    sections:
+    - file: 01-praksa-programskih-jezikov-vaje.md
   - file: 03-indukcija.md
+    sections:
+    - file: 03-indukcija-vaje.md
 - caption: Metateorija
   chapters:
   - file: 04-metateorija-programskih-jezikov.md
+    sections:
+    - file: 04-metateorija-programskih-jezikov-vaje.md
   - file: 05-lambda-racun.md
+    sections:
+    - file: 05-lambda-racun-vaje.md
   - file: 06-tipi.md
+    sections:
+    - file: 06-tipi-vaje.md
   - file: 07-izpeljava-tipov.md
+    sections:
+    - file: 07-izpeljava-tipov-vaje.md
 - caption: Denotacijska semantika
   chapters:
-  - file: 10-denotacijska-semantika
-  - file: 11-domene
+  - file: 10-denotacijska-semantika.md
+    sections:
+    - file: 10-denotacijska-semantika-vaje.md
+  - file: 11-domene.md
+    sections:
+    - file: 11-domene-vaje.md
 - caption: Učinki
   chapters:
-  - file: 08-racunski-ucinki
-  - file: 12-monade
-  - file: 13-prestrezniki-ucinkov
+  - file: 08-racunski-ucinki.md
+    sections:
+    - file: 08-racunski-ucinki-vaje.md
+  - file: 12-monade.md
+    sections:
+    - file: 12-monade-vaje.md
+  - file: 13-prestrezniki-ucinkov.md
+    sections:
+    - file: 13-prestrezniki-ucinkov-vaje.md

@@ -201,33 +201,3 @@ Vzemimo ukaza $c, c'$, množici lokacij $L, L'$ ter stanji $s, s'$, tako da:
 Tedaj obstaja množica lokacij $L''$, da velja $L'' \vdash c', L'$ in je $s'$ definirano na vseh lokacijah iz množice $L''$.
 
 Pozorni bodimo na dejstvo, da množica lokacij $L'$ ne ustreza stanju $s'$, saj gre za množico lokacij po koncu izvajanja ukaza $c$, med tem ko se je v $s'$ lahko v enem samem koraku spremenila le ena. Na primer, velja $\emptyset \vdash (\ell := \intsym{3}; m := \intsym{4}), \{ \ell, m \}$ in $\emptyset, (\ell := \intsym{3}; m := \intsym{4}) \leadsto \{ \ell \mapsto 3 \}, (\skip; m := \intsym{4})$. V tem primeru je $L = \emptyset$, $L' = \{ \ell, m \}$ ter $L'' = \{ \ell \}$.
-
-## Vaje
-
-### Naloga 1
-
-Preverite primere, izpuščene v zgornjih dokazih.
-
-### Naloga 2
-
-Vpeljite relacijo $\leadsto^*$, ki je tranzitivna in refleksivna ovojnica relacije malih korakov $\leadsto$. Razložite, kakšen je njen intuitivni pomen ter pokažite, da je res tranzitivna.
-
-### Naloga 3
-
-Definirajte _vrednosti_ `v` za posamezne družine izrazov.
-
-Pokažite pomožno lemo oblike:
-
-    s , c1 ~~> s' , c1' 
-    => 
-    s' , c1' --> s'' 
-    => 
-    s , c1 --> s''
-
-Pokažite ujemanje `~~*>` in `-->` (semantika velikih korakov):
-
-    s , e --> s', v 
-    <=> 
-    s , e ~~*> s' , v
-
-Ujemanje je potrebno pokazati za vsako družino izrazov.
