@@ -1,0 +1,1 @@
+# Prestrezniki učinkov

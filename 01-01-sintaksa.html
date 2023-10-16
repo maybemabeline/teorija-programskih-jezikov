@@ -1,0 +1,766 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Sintaksa jezika &#8212; Teorija programskih jezikov</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"intsym": ["\\underline{#1}", 1], "kwd": ["\\mathbf{#1}", 1], "kwdpre": ["\\kwd{#1}\\;", 1], "kwdmid": ["\\;\\kwd{#1}\\;", 1], "kwdpost": ["\\;\\kwd{#1}", 1], "true": "\\kwd{true}", "false": "\\kwd{false}", "ifthenelse": ["\\kwdpre{if} #1 \\kwdmid{then} #2 \\kwdmid{else} #3", 3], "whiledo": ["\\kwdpre{while} #1 \\kwdmid{do} #2", 2], "skip": "\\kwd{skip}", "ttt": "t\\!t", "fff": "f\\!\\!f", "infer": ["\\displaystyle{\\frac{#1}{#2}}", 2], "boolty": "\\kwd{bool}", "intty": "\\kwd{int}", "eqs": "\\mathcal{E}", "ctxt": "\\mathcal{C}", "itp": ["[\\![ #1 ]\\!]", 1], "return": "\\kwdpre{return}", "letin": ["\\kwdpre{let} #1 \\kwdmid{in}", 1], "bind": "\\mathop{>\\!\\!\\!>\\!\\!\\!=}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01-01-sintaksa';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Izvajanje" href="01-02-izvajanje.html" />
+    <link rel="prev" title="Praksa programskih jezikov" href="01-praksa-programskih-jezikov.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="00-uvod.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Teorija programskih jezikov</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00-uvod.html">
+                    Teorija programskih jezikov
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Osnove</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="01-praksa-programskih-jezikov.html">Praksa programskih jezikov</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Sintaksa jezika</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-02-izvajanje.html">Izvajanje</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-03-razclenjevanje.html">Razčlenjevanje</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-04-vaje.html">Vaje</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03-indukcija.html">Indukcija</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Metateorija</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04-metateorija-programskih-jezikov.html">Metateorija programskih jezikov</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-lambda-racun.html">λ-račun</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-tipi.html">Tipi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-izpeljava-tipov.html">Izpeljava tipov</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Denotacijska semantika</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="10-denotacijska-semantika.html">Denotacijska semantika</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-domene.html">Domene</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Učinki</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="08-racunski-ucinki.html">Računski učinki</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-monade.html">Monade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-prestrezniki-ucinkov.html">Prestrezniki učinkov</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/matijapretnar/teorija-programskih-jezikov/zapiski?urlpath=tree/01-01-sintaksa.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01-01-sintaksa.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="_sources/01-01-sintaksa.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sintaksa jezika</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konkretna-sintaksa">Konkretna sintaksa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstraktna-sintaksa">Abstraktna sintaksa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacija">Implementacija</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vaje">Vaje</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naloga-1">Naloga 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naloga-2">Naloga 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naloga-3">Naloga 3</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sintaksa-jezika">
+<h1>Sintaksa jezika<a class="headerlink" href="#sintaksa-jezika" title="Permalink to this heading">#</a></h1>
+<p>Prva stvar, ki jo moramo podati v definiciji programskega jezika, je njegova sintaksa - torej zapis vseh izrazov, ki jih jezik omogoča. Ločujemo med <em>konkretno sintakso</em>, ki definira zaporedja znakov, ki predstavljajo veljavne programe, ter <em>abstraktno sintakso</em>, ki možne izraze jezika predstavi z drevesno strukturo. Na primer, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">(2</span> <span class="pre">*</span> <span class="pre">3)</span></code> in <code class="docutils literal notranslate"><span class="pre">1+2*3</span></code> sta različna niza konkretne sintakse, ki oba predstavljata izraz abstraktne sintakse, predstavljen z drevesom</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      +
+     / \
+    1   *
+       / \
+      2   3
+</pre></div>
+</div>
+<p>ki ga na krajše pišemo kar kot <span class="math notranslate nohighlight">\(1 + (2 * 3)\)</span>, pri čemer matematična pisava nakazuje, da nas podrobnosti, kot so presledki, ne zanimajo.</p>
+<section id="konkretna-sintaksa">
+<h2>Konkretna sintaksa<a class="headerlink" href="#konkretna-sintaksa" title="Permalink to this heading">#</a></h2>
+<p>Konkretno sintakso običajno podajamo v <a class="reference external" href="https://en.m.wikipedia.org/wiki/Backus%E2%80%93Naur_form">Backus-Naurovi obliki (BNF)</a>. Ker mora konkretno sintakso razumeti tudi računalnik, v njej upoštevamo tudi presledke, zamike, oklepaje, komentarje, …  Ta je sestavljena iz pravil, ki povedo, kakšne vrste simbolov lahko nastopajo v jeziku. Pravilo, ki podaja sintakso določenega simbola je oblike</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;simbol&gt; ::= moznost1 | moznost2 | ...
+</pre></div>
+</div>
+<p>kjer je vsaka izmed možnosti sestavljena iz enega ali več nizov ali drugih simbolov. Na primer, simbol za števko <code class="docutils literal notranslate"><span class="pre">&lt;digit&gt;</span></code> je lahko kateri koli izmed nizov <code class="docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;1&quot;</span></code>, …, <code class="docutils literal notranslate"><span class="pre">&quot;9&quot;</span></code>, številka pa je sestavljena iz ene ali več števk ter morebitnega predznaka:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;digit&gt; ::= &quot;0&quot; | &quot;1&quot; | ... | &quot;9&quot;
+&lt;digits&gt; ::= &quot;&quot; | &lt;digit&gt; &lt;digits&gt;
+&lt;integer&gt; ::= &lt;digits&gt; | &quot;-&quot; &lt;digits&gt;
+</pre></div>
+</div>
+<p>Za programski jezik IMP bo konkretna sintaksa</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;space&gt; ::= &quot; &quot; | &quot;\n&quot; | &quot;\t&quot; | &quot;\r&quot;
+&lt;spaces&gt; ::= &quot;&quot; | &lt;spaces1&gt;
+&lt;spaces1&gt; ::= &lt;space&gt; &lt;spaces&gt;
+
+&lt;alpha&gt; ::= &quot;a&quot; | &quot;b&quot; | ... | &quot;z&quot;
+&lt;alphanum&gt; ::= &lt;alpha&gt; | &lt;digit&gt;
+&lt;alphanums&gt; ::= &quot;&quot; | &lt;alphanum&gt; &lt;alphanums&gt;
+&lt;ident&gt; ::= &lt;alpha&gt; &lt;alhpanums&gt;
+&lt;location&gt; ::= &quot;#&quot; &lt;ident&gt;
+
+&lt;exp&gt; ::= &lt;atomic_exp&gt; &lt;spaces&gt; &quot;+&quot; &lt;spaces&gt; &lt;atomic_exp&gt;
+        |  &lt;atomic_exp&gt; &lt;spaces&gt; &quot;-&quot; &lt;spaces&gt; &lt;atomic_exp&gt;
+        |  &lt;atomic_exp&gt; &lt;spaces&gt; &quot;*&quot; &lt;spaces&gt; &lt;atomic_exp&gt;
+        |  &lt;atomic_exp&gt;
+&lt;atomic_exp&gt; ::= &lt;location&gt;
+              |  &lt;integer&gt;
+              |  &quot;(&quot; &lt;spaces&gt; &lt;exp&gt; &lt;spaces&gt; &quot;)&quot;
+&lt;bexp&gt; ::= &quot;TRUE&quot;
+        |  &quot;FALSE&quot;
+        |  &lt;exp&gt; &lt;spaces&gt; &quot;=&quot; &lt;spaces&gt; &lt;exp&gt;
+        |  &lt;exp&gt; &lt;spaces&gt; &quot;&lt;&quot; &lt;spaces&gt; &lt;exp&gt;
+        |  &lt;exp&gt; &lt;spaces&gt; &quot;&gt;&quot; &lt;spaces&gt; &lt;exp&gt;
+&lt;cmd&gt; ::= &quot;IF&quot; &lt;spaces1&gt; &lt;bexp&gt; &lt;spaces1&gt; &quot;THEN&quot; &lt;spaces1&gt; &lt;cmd&gt; &lt;spaces1&gt; &quot;ELSE&quot; &lt;spaces1&gt; &lt;cmd&gt;
+        |  &quot;WHILE&quot; &lt;spaces1&gt; &lt;bexp&gt; &lt;spaces1&gt; &quot;DO&quot; &lt;spaces1&gt; &lt;cmd&gt;
+        |  &lt;atomic_cmd&gt; &lt;spaces&gt; &quot;;&quot; &lt;spaces&gt; &lt;cmd&gt;
+&lt;atomic_cmd&gt; ::= &lt;location&gt; &lt;spaces&gt; &quot;:=&quot; &lt;spaces&gt; &lt;exp&gt;
+              |  &quot;SKIP&quot;
+              |  &quot;(&quot; &lt;spaces&gt; &lt;cmd&gt; &lt;spaces&gt; &quot;)&quot;
+</pre></div>
+</div>
+<p>Kaj predstavljajo zgoraj omenjeni simboli, si bomo ogledali pri abstraktni sintaksi jezika IMP, za idejo pa lahko vseeno podamo primer veljavnega programa v konkretni sintaksi:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#fact := 1;
+WHILE #m &gt; 0 DO (
+    #fact := #fact * #m;
+    #m := #m - 1
+)
+</pre></div>
+</div>
+<p>Videti je, da program v pomnilniško lokacijo <code class="docutils literal notranslate"><span class="pre">#fact</span></code> shrani fakulteto števila, shranjenega v <code class="docutils literal notranslate"><span class="pre">#m</span></code>, vendar tega ne vemo, dokler ne podamo semantike jezika.</p>
+</section>
+<section id="abstraktna-sintaksa">
+<h2>Abstraktna sintaksa<a class="headerlink" href="#abstraktna-sintaksa" title="Permalink to this heading">#</a></h2>
+<p>Kot smo že videli, v abstraktni sintaksi možne izraze predstavimo z drevesi, katerih otroci predstavljajo njihove podizraze. Zaradi krajšega zapisa pa tudi abstraktno sintakso podamo v zapisu, podobnemu BNF, pri čemer nas podrobnosti, kot so oklepaji ali točen zapis spremenljivk in števil ne zanima.  Tako bomo predpostavili, da <span class="math notranslate nohighlight">\(n\)</span> predstavlja poljubno celo število, <span class="math notranslate nohighlight">\(\ell\)</span> pa poljubno pomnilniško lokacijo.</p>
+<p>Kot smo že omenili, je jezik IMP sestavljen iz aritmetičnih izrazov, ki jih bomo označevali s spremenljivko <span class="math notranslate nohighlight">\(e\)</span>, logičnih izrazov, ki jih bomo označevali z <span class="math notranslate nohighlight">\(b\)</span>, ter ukazov, ki jih bomo označevali s <span class="math notranslate nohighlight">\(c\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{aligned}
+    \text{aritmetični izraz } e &amp;::=
+      \ell \mid
+      \intsym{n} \mid
+      e_1 + e_2 \mid
+      e_1 - e_2 \mid
+      e_1 * e_2 \\
+    \text{logični izraz } b &amp;::=
+      \true \mid
+      \false \mid
+      e_1 = e_2 \mid
+      e_1 &lt; e_2 \mid
+      e_1 &gt; e_2 \\
+    \text{ukaz } c &amp;::=
+      \ifthenelse{b}{c_1}{c_2} \mid
+      \whiledo{b}{c} \mid
+      c_1 ; c_2 \mid
+      \ell := e \mid
+      \skip
+  \end{aligned}
+\end{split}\]</div>
+<p>Oglejmo si vse veljavne dele jezika, pri čemer bomo za vsakega neformalno povedali, kaj predstavlja. Aritmetični izrazi so sestavljeni iz branja vrednosti pomnilniških lokacij, celoštevilskih konstant (ki jih podčrtamo, da jih ločimo od celih števil) ter aritmetičnih operacij, logični izrazi pa so sestavljeni iz logičnih konstant ter primerjav. Ukazi so bolj zanimivi:</p>
+<ul class="simple">
+<li><p>pogojni ukaz, ki izvede <span class="math notranslate nohighlight">\(c_1\)</span>, kadar <span class="math notranslate nohighlight">\(b\)</span> predstavlja resnično logično vrednost, oziroma <span class="math notranslate nohighlight">\(c_2\)</span>, kadar <span class="math notranslate nohighlight">\(b\)</span> predstavlja neresnično logično vrednost;</p></li>
+<li><p>zanka <code class="docutils literal notranslate"><span class="pre">while</span></code> izvaja ukaz <span class="math notranslate nohighlight">\(c\)</span>, dokler <span class="math notranslate nohighlight">\(b\)</span> predstavlja resnično logično vrednost;</p></li>
+<li><p>zaporedno izvajanje najprej izvede <span class="math notranslate nohighlight">\(c_1\)</span> - ko (če) se ta konča, izvede še <span class="math notranslate nohighlight">\(c_2\)</span>;</p></li>
+<li><p>prirejanje izračuna aritmetični izraz <span class="math notranslate nohighlight">\(e\)</span> ter njegovo vrednost zapiše v pomnilniško lokacijo <span class="math notranslate nohighlight">\(\ell\)</span>;</p></li>
+<li><p>zadnji ukaz ne naredi ničesar, uporabimo pa ga na primer takrat, kadar v pogojnem stavku želimo nekaj storiti le v eni izmed vej.</p></li>
+</ul>
+<p>Zgornji program bi v abstraktni sintaksi lahko predstavili z ukazom</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{aligned}
+    &amp;\mathsf{fact} := \intsym{1}; \\
+    &amp;\whiledo{\mathsf{m} &gt; \intsym{0}}{} \\
+    &amp;\quad \mathsf{fact} := \mathsf{fact} * \mathsf{m}; \\
+    &amp;\quad \mathsf{m} := \mathsf{m} - \intsym{1}
+  \end{aligned}
+\end{split}\]</div>
+</section>
+<section id="implementacija">
+<h2>Implementacija<a class="headerlink" href="#implementacija" title="Permalink to this heading">#</a></h2>
+<p>Sintakso, ki je sestavljena iz treh vrst izrazov, bomo predstavili s tremi induktivnimi tipi. Pomnilniške lokacije bomo predstavili kar z nizi, vendar jih bomo zaradi lažjega razločevanja ovili s konstruktorjem.</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-OCaml notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="n">location</span> <span class="o">=</span> <span class="nc">Location</span> <span class="k">of</span> <span class="kt">string</span>
+
+<span class="k">type</span> <span class="n">exp</span> <span class="o">=</span>
+  <span class="o">|</span> <span class="nc">Lookup</span> <span class="k">of</span> <span class="n">location</span>
+  <span class="o">|</span> <span class="nc">Int</span> <span class="k">of</span> <span class="kt">int</span>
+  <span class="o">|</span> <span class="nc">Plus</span> <span class="k">of</span> <span class="n">exp</span> <span class="o">*</span> <span class="n">exp</span>
+  <span class="o">|</span> <span class="nc">Minus</span> <span class="k">of</span> <span class="n">exp</span> <span class="o">*</span> <span class="n">exp</span>
+  <span class="o">|</span> <span class="nc">Times</span> <span class="k">of</span> <span class="n">exp</span> <span class="o">*</span> <span class="n">exp</span>
+
+<span class="k">type</span> <span class="n">bexp</span> <span class="o">=</span>
+  <span class="o">|</span> <span class="nc">Bool</span> <span class="k">of</span> <span class="kt">bool</span>
+  <span class="o">|</span> <span class="nc">Equal</span> <span class="k">of</span> <span class="n">exp</span> <span class="o">*</span> <span class="n">exp</span>
+  <span class="o">|</span> <span class="nc">Less</span> <span class="k">of</span> <span class="n">exp</span> <span class="o">*</span> <span class="n">exp</span>
+  <span class="o">|</span> <span class="nc">Greater</span> <span class="k">of</span> <span class="n">exp</span> <span class="o">*</span> <span class="n">exp</span>
+
+<span class="k">type</span> <span class="n">cmd</span> <span class="o">=</span>
+  <span class="o">|</span> <span class="nc">IfThenElse</span> <span class="k">of</span> <span class="n">bexp</span> <span class="o">*</span> <span class="n">cmd</span> <span class="o">*</span> <span class="n">cmd</span>
+  <span class="o">|</span> <span class="nc">WhileDo</span> <span class="k">of</span> <span class="n">bexp</span> <span class="o">*</span> <span class="n">cmd</span>
+  <span class="o">|</span> <span class="nc">Seq</span> <span class="k">of</span> <span class="n">cmd</span> <span class="o">*</span> <span class="n">cmd</span>
+  <span class="o">|</span> <span class="nc">Assign</span> <span class="k">of</span> <span class="n">location</span> <span class="o">*</span> <span class="n">exp</span>
+  <span class="o">|</span> <span class="nc">Skip</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Na primer, aritmetična izraza <span class="math notranslate nohighlight">\(e_1 = (\intsym{6} * \intsym{7})\)</span> in <span class="math notranslate nohighlight">\(e_2 = (\mathsf{m} - \intsym{1})\)</span> bi predstavili z</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-OCaml notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="n">exp1</span> <span class="o">=</span> <span class="nc">Times</span> <span class="o">(</span><span class="nc">Int</span> <span class="mi">6</span><span class="o">,</span> <span class="nc">Int</span> <span class="mi">7</span><span class="o">)</span>
+<span class="k">let</span> <span class="n">exp2</span> <span class="o">=</span> <span class="nc">Minus</span> <span class="o">(</span><span class="nc">Lookup</span> <span class="o">(</span><span class="nc">Location</span> <span class="s2">&quot;m&quot;</span><span class="o">),</span> <span class="nc">Int</span> <span class="mi">1</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val exp1 : exp = Times (Int 6, Int 7)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val exp2 : exp = Minus (Lookup (Location &quot;m&quot;), Int 1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>logični izraz <span class="math notranslate nohighlight">\(b = (\mathsf{m} &gt; \intsym{0})\)</span> z</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-OCaml notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="n">bexp</span> <span class="o">=</span> <span class="nc">Greater</span> <span class="o">(</span><span class="nc">Lookup</span> <span class="o">(</span><span class="nc">Location</span> <span class="s2">&quot;m&quot;</span><span class="o">),</span> <span class="nc">Int</span> <span class="mi">0</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val bexp : bexp = Greater (Lookup (Location &quot;m&quot;), Int 0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>ukaza <span class="math notranslate nohighlight">\(c_1 = (\mathsf{m} := e_2)\)</span> in <span class="math notranslate nohighlight">\(c_2 = (\whiledo{b}{c_1})\)</span> pa z</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-OCaml notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="n">cmd1</span> <span class="o">=</span> <span class="nc">Assign</span> <span class="o">(</span><span class="nc">Location</span> <span class="s2">&quot;m&quot;</span><span class="o">,</span> <span class="n">exp2</span><span class="o">)</span>
+<span class="k">let</span> <span class="n">cmd2</span> <span class="o">=</span> <span class="nc">WhileDo</span> <span class="o">(</span><span class="n">bexp</span><span class="o">,</span> <span class="n">cmd1</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val cmd1 : cmd = Assign (Location &quot;m&quot;, Minus (Lookup (Location &quot;m&quot;), Int 1))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val cmd2 : cmd =
+  WhileDo (Greater (Lookup (Location &quot;m&quot;), Int 0),
+   Assign (Location &quot;m&quot;, Minus (Lookup (Location &quot;m&quot;), Int 1)))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="vaje">
+<h2>Vaje<a class="headerlink" href="#vaje" title="Permalink to this heading">#</a></h2>
+<section id="naloga-1">
+<h3>Naloga 1<a class="headerlink" href="#naloga-1" title="Permalink to this heading">#</a></h3>
+<p>Napišite sintaktična drevesa, ki ustrezajo programom:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#a := 2 + #b
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>IF #x = 2 THEN 
+  #x := 3
+ELSE
+  SKIP
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>WHILE #z &gt; 0 DO 
+  #z := #z - 1;
+  #w := #z + #w
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(WHILE #z &gt; 0 DO #z := #z - 1);
+#w := #z + #w
+</pre></div>
+</div>
+</section>
+<section id="naloga-2">
+<h3>Naloga 2<a class="headerlink" href="#naloga-2" title="Permalink to this heading">#</a></h3>
+<p>Programe najprej napišite v OCamlu, nato pa jih prevedite v programski jezik IMP.</p>
+<ol class="arabic simple">
+<li><p>Napišite program, ki sešteje vsa naravna števila manjša od <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></li>
+<li><p>Napišite program, ki preveri ali je podano število praštevilo.</p></li>
+</ol>
+</section>
+<section id="naloga-3">
+<h3>Naloga 3<a class="headerlink" href="#naloga-3" title="Permalink to this heading">#</a></h3>
+<p>Razmislite, kako bi dopolnili konkretno in abstraktno sintakso jezika IMP za:</p>
+<ol class="arabic simple">
+<li><p>logična veznika <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> in <code class="docutils literal notranslate"><span class="pre">||</span></code>,</p></li>
+<li><p>ukaz <code class="docutils literal notranslate"><span class="pre">SWITCH</span></code>, ki zamenja vrednosti dveh lokacij,</p></li>
+<li><p>ukaz <code class="docutils literal notranslate"><span class="pre">FAIL</span></code>, ki prekine izvajanje programa.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "ocaml-jupyter"
+        },
+        kernelOptions: {
+            name: "ocaml-jupyter",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ocaml-jupyter'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01-praksa-programskih-jezikov.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Praksa programskih jezikov</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01-02-izvajanje.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Izvajanje</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konkretna-sintaksa">Konkretna sintaksa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstraktna-sintaksa">Abstraktna sintaksa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacija">Implementacija</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vaje">Vaje</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naloga-1">Naloga 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naloga-2">Naloga 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naloga-3">Naloga 3</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matija Pretnar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
