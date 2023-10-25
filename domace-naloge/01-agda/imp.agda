@@ -28,9 +28,9 @@ plus (suc m) n = suc (plus m n)
 
 -- Seznami
 
-data List : Set → Set where
-    [] : {A : Set} → List A
-    _::_ : {A : Set} → A → List A → List A
+data List (A : Set) : Set where
+    [] :  List A
+    _::_ : A → List A → List A
 
 
 -- Končne množice
@@ -48,9 +48,9 @@ suc m / n = suc (m / n)
 
 -- Vektorji
 
-data Vec : Set → Nat → Set where
-    [] : {A : Set} → Vec A zero
-    _::_ : {A : Set} {n : Nat} → A → Vec A n → Vec A (suc n)
+data Vec (A : Set) : Nat → Set where
+    [] : Vec A zero
+    _::_ : {n : Nat} → A → Vec A n → Vec A (suc n)
 
 _[_] : {A : Set} {n : Nat} → Vec A n → Fin n → A
 [] [ () ]
